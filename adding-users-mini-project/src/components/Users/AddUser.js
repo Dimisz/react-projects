@@ -11,7 +11,7 @@ const AddUser = (props) => {
     const addUserHandler = (event) => {
         event.preventDefault();
         if(userName.trim().length === 0){
-            console.log('Pllease enter user name');
+            console.log('Please enter user name');
             return;
         }
         if(userAge.trim().length === 0){
@@ -22,7 +22,8 @@ const AddUser = (props) => {
             console.log('Enter a valid age (>0)');
             return;
         }
-        console.log(userName, userAge);
+        
+        props.onAddUser(userName, userAge);
         setUserName('');
         setUserAge('');
     }
