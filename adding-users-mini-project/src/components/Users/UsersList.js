@@ -6,7 +6,7 @@ const UsersList = props => {
         <Card className={styles.users}>
             <ul>
                 {props.users.map(user => (
-                    <li>{user.name} ({user.age} years old)</li>
+                    <li key={Math.random()}>{user.name} ({user.age} years old)</li>
                 ))}
             </ul>
         </Card>
