@@ -9,14 +9,17 @@ import styles from './AddUser.module.css';
 const AddUser = (props) => {
     const [enteredUserName, setEnteredUserName] = useState('');
     const [enteredAge, setEnteredAge] = useState('');
+    const [error, setError] = useState();
+    
 
     const addUserHandler = (event) => {
         event.preventDefault();
         if(enteredUserName.trim().length === 0 || enteredAge.trim().length === 0){
+            setError({title: 'Empty input', message: "Fill out all the fields"});
             return;
         }
         if(Number(enteredAge) < 1){
-            console.log('invalid age');
+            setError({title: 'Invalid age', message: "Age should be greater than 0"});
             return;
         }
 
@@ -34,9 +37,17 @@ const AddUser = (props) => {
         setEnteredAge(event.target.value);
     };
 
+    const errorHandler = () => {
+        setError();
+    }
+
+
     return (
     <div>
-        <ErrorModal title="Error occurred!" message="Something went wrong!" />
+        {error && <ErrorModal title={error.title} 
+                              message={error.message} 
+                              onAcknowledgeError={errorHandler}/> 
+        }
         <Card className={styles.input}>
             <form onSubmit={addUserHandler}>
                 <label htmlFor="username">Username</label>
