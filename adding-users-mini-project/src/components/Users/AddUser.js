@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -7,6 +7,9 @@ import ErrorModal from '../UI/ErrorModal';
 import styles from './AddUser.module.css';
 
 const AddUser = (props) => {
+    // const nameInputRef = useRef();
+    // const ageInputRef = useRef();
+
     const [enteredUserName, setEnteredUserName] = useState('');
     const [enteredAge, setEnteredAge] = useState('');
     const [error, setError] = useState();
@@ -14,6 +17,9 @@ const AddUser = (props) => {
 
     const addUserHandler = (event) => {
         event.preventDefault();
+        // const enteredName = nameInputRef.current.value;
+        // const enteredUserAge = ageInputRef.current.value;
+
         if(enteredUserName.trim().length === 0 || enteredAge.trim().length === 0){
             setError({title: 'Empty input', message: "Fill out all the fields"});
             return;
@@ -55,6 +61,7 @@ const AddUser = (props) => {
                     type="text" 
                     onChange={usernameChangeHandler}
                     value={enteredUserName}
+                    // ref={nameInputRef}
                 />
 
                 <label htmlFor="age">Age (Years)</label>
@@ -62,6 +69,7 @@ const AddUser = (props) => {
                         type="number" 
                         onChange={ageChangeHandler}
                         value={enteredAge}
+                        // ref={ageInputRef}
                 />
                 <Button type="submit">Add User</Button>
             </form>
