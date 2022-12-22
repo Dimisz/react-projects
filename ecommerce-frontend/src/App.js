@@ -1,4 +1,4 @@
-import Categories from './components/categories-directory/Categories';
+import Categories from './components/categories/Categories';
 
 const App = () => {
 
